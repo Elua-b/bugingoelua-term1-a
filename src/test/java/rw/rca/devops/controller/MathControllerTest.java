@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import rw.rca.devops.dto.DoMathRequest;
 import rw.rca.devops.service.IMathOperator;
+import rw.rca.devops.serviceImpls.MathOperatorImpl;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -23,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(IMathOperator.class)
 public class MathControllerTest {
     @MockBean
-    private IMathOperator mathServiceMock;
+    private MathOperatorImpl mathServiceMock;
 
     @Autowired
     private MockMvc mockMvc;
@@ -59,7 +60,7 @@ public class MathControllerTest {
         when(mathServiceMock.doMath(data.getOperand1(), data.getOperand2(), data.getOperation())).thenReturn(10.0);
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .post("/api/v1/doMath")
+                .post("/api/v1")
                 .content(asJsonString(data))
                 .accept(MediaType.APPLICATION_JSON);
 
