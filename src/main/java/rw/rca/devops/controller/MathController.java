@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import rw.rca.devops.dto.DoMathRequest;
 import rw.rca.devops.service.IMathOperator;
+import rw.rca.devops.serviceImpls.MathOperatorImpl;
 import rw.rca.devops.utils.ApiResponse;
 import rw.rca.devops.utils.InvalidOperationException;
 
@@ -16,15 +17,14 @@ import rw.rca.devops.utils.InvalidOperationException;
 
 public class MathController {
     @Autowired
-    public static IMathOperator mathService;
+    private final MathOperatorImpl mathOperatorImpl;
 
-    public MathController(IMathOperator mathService) {
-        MathController.mathService = mathService;
+    public MathController(MathOperatorImpl mathOperatorImpl) {
+        this.mathOperatorImpl = mathOperatorImpl;
     }
 
-    @PostMapping("/doMath")
-    public ResponseEntity<?> doMath(@RequestBody DoMathRequest body) throws InvalidOperationException {
-        return ResponseEntity.ok(new ApiResponse(mathService.doMath(body.getOperand1(), body.getOperand2(), body.getOperation())));
-
+    @PostMapping
+    public ResponseEntity<ApiResponse> create(@RequestBody DoMathRequest dto) throws InvalidOperationException {
+        return ResponseEntity.ok(ApiResponse.success(mathOperatorImpl.doMath(dto.getOperand1(), dto.getOperand2(), dto.getOperation())));
     }
 }
