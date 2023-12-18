@@ -1,5 +1,10 @@
 package rw.rca.devops.utils;
 
-public class ApiResponse {
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
+@AllArgsConstructor
+public class ApiResponse {
+    private double calcResponse;
 }
