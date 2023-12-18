@@ -13,17 +13,17 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import rw.rca.devops.dto.DoMathRequest;
-import rw.rca.devops.service.MathService;
+import rw.rca.devops.service.IMathOperator;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(MathService.class)
+@WebMvcTest(IMathOperator.class)
 public class MathControllerTest {
     @MockBean
-    private MathService mathServiceMock;
+    private IMathOperator mathServiceMock;
 
     @Autowired
     private MockMvc mockMvc;

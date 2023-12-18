@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import rw.rca.devops.dto.DoMathRequest;
-import rw.rca.devops.service.MathService;
+import rw.rca.devops.service.IMathOperator;
 import rw.rca.devops.utils.ApiResponse;
 import rw.rca.devops.utils.InvalidOperationException;
 
@@ -16,9 +16,9 @@ import rw.rca.devops.utils.InvalidOperationException;
 
 public class MathController {
     @Autowired
-    public static MathService mathService;
+    public static IMathOperator mathService;
 
-    public MathController(MathService mathService) {
+    public MathController(IMathOperator mathService) {
         MathController.mathService = mathService;
     }
 
