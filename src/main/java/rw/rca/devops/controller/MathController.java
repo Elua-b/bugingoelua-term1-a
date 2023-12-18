@@ -25,5 +25,6 @@ public class MathController {
     @PostMapping("/doMath")
     public ResponseEntity<?> doMath(@RequestBody DoMathRequest body) throws InvalidOperationException {
         return ResponseEntity.ok(new ApiResponse(mathService.doMath(body.getOperand1(), body.getOperand2(), body.getOperation())));
+
     }
 }
