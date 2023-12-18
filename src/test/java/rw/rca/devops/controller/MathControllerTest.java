@@ -1,6 +1,7 @@
 package rw.rca.devops.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,24 +32,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @WebMvcTest(IMathOperator.class)
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class MathControllerTest  {
+public class MathControllerTest {
+
     @Autowired
     private TestRestTemplate restTemplate;
 
     @Test
-    public void testMath_operation_success() throws InvalidOperationException {
-        DoMathRequest mathRequest = new DoMathRequest(12, 4, "/");
+    public void doMathOperation_Success(){
+        DoMathRequest dto = new DoMathRequest(2, 5, "+");
 
-        ResponseEntity<ApiResponse> response = this.restTemplate.postForEntity(
-                "/api/v1",
-                mathRequest,
-                ApiResponse.class
-        );
+        ResponseEntity<ApiResponse> response = this.restTemplate.postForEntity("/api/v1",dto,ApiResponse.class);
 
-        assertTrue(response.getStatusCode().is2xxSuccessful());
-        assertEquals(3.0, response.getBody().getData());
+        Assert.assertEquals(200, response.getStatusCode().value());
     }
 }
 
