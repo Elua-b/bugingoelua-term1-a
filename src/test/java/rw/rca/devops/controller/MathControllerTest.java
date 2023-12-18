@@ -1,5 +1,6 @@
 package rw.rca.devops.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,5 +69,11 @@ public class MathControllerTest {
                 .andExpect(content().string("Cannot divide by 0"))
                 .andReturn();
     }
-
+    private byte[] asJsonString(DoMathRequest data) {
+        try {
+            return new ObjectMapper().writeValueAsString(data).getBytes();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
