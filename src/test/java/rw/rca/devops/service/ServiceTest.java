@@ -2,16 +2,7 @@ package rw.rca.devops.service;
 
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
-import rw.rca.devops.dto.DoMathRequest;
 import rw.rca.devops.serviceImpls.MathOperatorImpl;
-import rw.rca.devops.utils.ApiResponse;
 import rw.rca.devops.utils.InvalidOperationException;
 
 import static org.junit.Assert.assertEquals;
@@ -20,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertThrows;
 
 
-public class MathControllerImplTest {
+public class ServiceTest {
     private int operand1 = 10;
     private int operand2 = 3;
 
